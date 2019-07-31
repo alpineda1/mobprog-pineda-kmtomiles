@@ -1,0 +1,45 @@
+package com.example.kmtomiles;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Button;
+
+import java.text.DecimalFormat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button convertMilesToKM = findViewById(R.id.convertMilesToKM);
+        convertMilesToKM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText textView = (EditText) findViewById(R.id.editText);
+                EditText textView2 = (EditText) findViewById(R.id.editText3);
+                double vMiles = Double.valueOf(textView.getText().toString());
+                double vKM = vMiles / 0.62137;
+                DecimalFormat formatVal = new DecimalFormat("##.##");
+                textView2.setText(formatVal.format(vKM));
+            }
+        });
+
+        Button kmtomiles = findViewById(R.id.kmtomiles);
+        kmtomiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText textView = (EditText) findViewById(R.id.editText);
+                EditText textView2 = (EditText) findViewById(R.id.editText3);
+                double vKM = Double.valueOf(textView2.getText().toString());
+                double vMiles = vKM * 0.62137;
+                DecimalFormat formatVal = new DecimalFormat("##.##");
+                textView.setText(formatVal.format(vMiles));
+            }
+        });
+    }
+}
